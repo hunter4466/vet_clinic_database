@@ -5,6 +5,6 @@ CREATE TABLE `vet_clinic`.`animals` (
   `name` VARCHAR(45) NULL,
   `date_of_birth` DATE NULL,
   `escape_attempts` INT NULL,
-  `neutered` TINYINT NULL,
+  `neutered` BOOLEAN NULL,
   `weight_kg` DECIMAL(2) NULL,
   PRIMARY KEY (`id`));
