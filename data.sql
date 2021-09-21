@@ -9,3 +9,48 @@ INSERT INTO `vet_clinic`.`animals` (`name`, `date_of_birth`, `escape_attempts`, 
 INSERT INTO `vet_clinic`.`animals` (`name`, `date_of_birth`, `escape_attempts`, `neutered`, `weight_kg`) VALUES ('Angemon', '2005-06-12', '1', true, '-45.00');
 INSERT INTO `vet_clinic`.`animals` (`name`, `date_of_birth`, `escape_attempts`, `neutered`, `weight_kg`) VALUES ('Boarmon', '2005-07-12', '7', true, '20.40');
 INSERT INTO `vet_clinic`.`animals` (`name`, `date_of_birth`, `escape_attempts`, `neutered`, `weight_kg`) VALUES ('Blossom', '1998-10-13', '3', true, '17.00');
+
+/* Insert the following data into the owners table:
+Sam Smith 34 years old.
+Jennifer Orwell 19 years old.
+Bob 45 years old.
+Melody Pond 77 years old.
+Dean Winchester 14 years old.
+Jodie Whittaker 38 years old. */
+INSERT INTO `vet_clinic`.`owners` (`full_name`, `age`) VALUES ('Sam Smith', '34');
+INSERT INTO `vet_clinic`.`owners` (`full_name`, `age`) VALUES ('Jennifer Orwell', '19');
+INSERT INTO `vet_clinic`.`owners` (`full_name`, `age`) VALUES ('Bob', '45');
+INSERT INTO `vet_clinic`.`owners` (`full_name`, `age`) VALUES ('Melody Pond', '77');
+INSERT INTO `vet_clinic`.`owners` (`full_name`, `age`) VALUES ('Dean Winchester', '14');
+INSERT INTO `vet_clinic`.`owners` (`full_name`, `age`) VALUES ('Jodie Whittaker', '38');
+
+/* Insert the following data into the species table:
+Pokemon
+Digimon */
+INSERT INTO `vet_clinic`.`species` (`name`) VALUES ('Pokemon');
+INSERT INTO `vet_clinic`.`species` (`name`) VALUES ('Digimon');
+
+/* Modify your inserted animals so it includes the species_id value:
+If the name ends in "mon" it will be Digimon
+All other animals are Pokemon */
+UPDATE vet_clinic.animals SET species_id = '2' WHERE name LIKE '%mon' AND id > '0';
+UPDATE vet_clinic.animals SET species_id = '1' WHERE species_id IS NULL;
+
+/* Modify your inserted animals to include owner information (owner_id):
+Sam Smith owns Agumon.
+Jennifer Orwell owns Gabumon and Pikachu.
+Bob owns Devimon and Plantmon.
+Melody Pond owns Charmander, Squirtle, and Blossom.
+Dean Winchester owns Angemon and Boarmon. */
+UPDATE vet_clinic.animals SET owner_id = '1' WHERE name = 'Agumon' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '2' WHERE name = 'Gabumon' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '2' WHERE name = 'Pikachu' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '3' WHERE name = 'Devimon' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '3' WHERE name = 'Plantmon' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '4' WHERE name = 'Charmander' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '4' WHERE name = 'SquirtLe' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '4' WHERE name = 'Blossom' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '5' WHERE name = 'Angemon' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '5' WHERE name = 'Boarmon' AND id > '0';
+
+
