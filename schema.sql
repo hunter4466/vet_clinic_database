@@ -10,3 +10,21 @@ CREATE TABLE `vet_clinic`.`animals` (
   PRIMARY KEY (`id`));
 
 ALTER TABLE `vet_clinic`.`animals` ADD `species` VARCHAR(45) NULL;
+
+
+CREATE TABLE `vet_clinic`.`owners` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `full_name` VARCHAR(45) NULL,
+  `age` INT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `vet_clinic`.`species` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+ALTER TABLE `vet_clinic`.`animals` DROP COLUMN `species`;
+ALTER TABLE `vet_clinic`.`animals` ADD `species_id`  INT NULL;
+ALTER TABLE `vet_clinic`.`animals` ADD `owner_id` INT NULL;
+ALTER TABLE `vet_clinic`.`animals` ADD FOREIGN KEY (species_id) REFERENCES species(id);
+ALTER TABLE `vet_clinic`.`animals` ADD FOREIGN KEY (owner_id) REFERENCES owners(id);
