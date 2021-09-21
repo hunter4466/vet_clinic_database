@@ -7,5 +7,6 @@ CREATE TABLE `vet_clinic`.`animals` (
   `escape_attempts` INT NULL,
   `neutered` BOOLEAN NULL,
   `weight_kg` DECIMAL(6,2) NULL,
-  `species` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
+
+ALTER TABLE `vet_clinic`.`animals` ADD `species` VARCHAR(45) NULL;

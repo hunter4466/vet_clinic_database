@@ -13,6 +13,7 @@ SELECT * FROM vet_clinic.animals WHERE weight_kg >= "10.40" AND weight_kg <= "17
 BEGIN;
 UPDATE vet_clinic.animals SET species = 'unspecified' WHERE id > 0;
 ROLLBACK;
+SELECT * FROM ver_clinic.animals;
 
 /*Inside a transaction:
 Update the animals table by setting the species column to digimon for all animals that have a name ending in mon.
@@ -22,8 +23,9 @@ Verify that change was made and persists after commit.*/
 
 BEGIN;
 UPDATE vet_clinic.animals SET species = 'digimon' WHERE name LIKE '%mon' AND id > '0';
-UPDATE vet_clinic.animals SET species = 'pokemon' WHERE name NOT LIKE '%mon' AND id > '0';
+UPDATE vet_clinic.animals SET species = 'pokemon' WHERE species IS NULL AND id > '0';
 COMMIT;
+SELECT * FROM ver_clinic.animals;
 
 /*Inside a transaction delete all records in the animals table, then roll back the transaction.*/
 
@@ -57,9 +59,9 @@ What is the minimum and maximum weight of each type of animal?
 What is the average number of escape attempts per animal type of those born between 1990 and 2000?*/
 
 SELECT COUNT(*) FROM vet_clinic.animals;
-SELECT COUNT(*) FROM vet_clinic.animals WHERE escape_attempts > 0;
+SELECT COUNT(*) FROM vet_clinic.animals WHERE escape_attempts = 0;
 SELECT AVG(weight_kg) FROM vet_clinic.animals;
-SELECT MAX(escape_attempts) FROM vet_clinic.animals;
+SELECT neutered FROM vet_clinic.animals WHERE escape_attempts = (SELECT MAX(escape_attempts) FROM vet_clinic.animals);
 SELECT MIN(weight_kg) FROM vet_clinic.animals WHERE species = 'pokemon';
 SELECT MAX(weight_kg) FROM vet_clinic.animals WHERE species = 'pokemon';
 SELECT MIN(weight_kg) FROM vet_clinic.animals WHERE species = 'digimon';
