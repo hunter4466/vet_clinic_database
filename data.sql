@@ -20,11 +20,16 @@ INSERT INTO `vet_clinic`.`owners` (`full_name`, `age`) VALUES ('Jodie Whittaker'
 INSERT INTO `vet_clinic`.`species` (`name`) VALUES ('Pokemon');
 INSERT INTO `vet_clinic`.`species` (`name`) VALUES ('Digimon');
 
-UPDATE vet_clinic.animals SET species_id = '2' WHERE name LIKE '%mon';
-UPDATE vet_clinic.animals SET species_id = '1' WHERE species IS NULL;
+UPDATE vet_clinic.animals SET species_id = '2' WHERE name LIKE '%mon' AND id > '0';
+UPDATE vet_clinic.animals SET species_id = '1' WHERE species_id IS NULL;
 
-UPDATE vet_clinic.animals SET owners_id = '1' WHERE name = 'Agumon';
-UPDATE vet_clinic.animals SET owners_id = '2' WHERE name = 'Gabumon' AND name = 'Pikachu';
-UPDATE vet_clinic.animals SET owners_id = '3' WHERE name = 'Devimon' AND name = 'Plantmon';
-UPDATE vet_clinic.animals SET owners_id = '4' WHERE name = 'Charmander' AND name = 'Squirte' AND name = 'Blossom';
-UPDATE vet_clinic.animals SET owners_id = '5' WHERE name = 'Angemon' AND name = 'Boarmon';
+UPDATE vet_clinic.animals SET owner_id = '1' WHERE name = 'Agumon' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '2' WHERE name = 'Gabumon' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '2' WHERE name = 'Pikachu' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '3' WHERE name = 'Devimon' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '3' WHERE name = 'Plantmon' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '4' WHERE name = 'Charmander' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '4' WHERE name = 'SquirtLe' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '4' WHERE name = 'Blossom' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '5' WHERE name = 'Angemon' AND id > '0';
+UPDATE vet_clinic.animals SET owner_id = '5' WHERE name = 'Boarmon' AND id > '0';
