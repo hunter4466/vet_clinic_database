@@ -9,3 +9,22 @@ INSERT INTO `vet_clinic`.`animals` (`name`, `date_of_birth`, `escape_attempts`, 
 INSERT INTO `vet_clinic`.`animals` (`name`, `date_of_birth`, `escape_attempts`, `neutered`, `weight_kg`) VALUES ('Angemon', '2005-06-12', '1', true, '-45.00');
 INSERT INTO `vet_clinic`.`animals` (`name`, `date_of_birth`, `escape_attempts`, `neutered`, `weight_kg`) VALUES ('Boarmon', '2005-07-12', '7', true, '20.40');
 INSERT INTO `vet_clinic`.`animals` (`name`, `date_of_birth`, `escape_attempts`, `neutered`, `weight_kg`) VALUES ('Blossom', '1998-10-13', '3', true, '17.00');
+
+INSERT INTO `vet_clinic`.`owners` (`full_name`, `age`) VALUES ('Sam Smith', '34');
+INSERT INTO `vet_clinic`.`owners` (`full_name`, `age`) VALUES ('Jennifer Orwell', '19');
+INSERT INTO `vet_clinic`.`owners` (`full_name`, `age`) VALUES ('Bob', '45');
+INSERT INTO `vet_clinic`.`owners` (`full_name`, `age`) VALUES ('Melody Pond', '77');
+INSERT INTO `vet_clinic`.`owners` (`full_name`, `age`) VALUES ('Dean Winchester', '14');
+INSERT INTO `vet_clinic`.`owners` (`full_name`, `age`) VALUES ('Jodie Whittaker', '38');
+
+INSERT INTO `vet_clinic`.`species` (`name`) VALUES ('Pokemon');
+INSERT INTO `vet_clinic`.`species` (`name`) VALUES ('Digimon');
+
+UPDATE vet_clinic.animals SET species_id = '2' WHERE name LIKE '%mon';
+UPDATE vet_clinic.animals SET species_id = '1' WHERE species IS NULL;
+
+UPDATE vet_clinic.animals SET owners_id = '1' WHERE name = 'Agumon';
+UPDATE vet_clinic.animals SET owners_id = '2' WHERE name = 'Gabumon' AND name = 'Pikachu';
+UPDATE vet_clinic.animals SET owners_id = '3' WHERE name = 'Devimon' AND name = 'Plantmon';
+UPDATE vet_clinic.animals SET owners_id = '4' WHERE name = 'Charmander' AND name = 'Squirte' AND name = 'Blossom';
+UPDATE vet_clinic.animals SET owners_id = '5' WHERE name = 'Angemon' AND name = 'Boarmon';
