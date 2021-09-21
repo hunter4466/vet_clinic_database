@@ -68,3 +68,24 @@ SELECT MIN(weight_kg) FROM vet_clinic.animals WHERE species = 'digimon';
 SELECT MAX(weight_kg) FROM vet_clinic.animals WHERE species = 'digimon';
 SELECT AVG(weight_kg) FROM vet_clinic.animals WHERE species = 'pokemon' AND date_of_birth >= '19900101' AND date_of_birth <= '20001231';
 SELECT AVG(weight_kg) FROM vet_clinic.animals WHERE species = 'digimon' AND date_of_birth >= '19900101' AND date_of_birth <= '20001231';
+
+
+/* Write queries (using JOIN) to answer the following questions: */
+
+/* What animals belong to Melody Pond? */
+SELECT DISTINCT name FROM vet_clinic.animals INNER JOIN vet_clinic.owners ON owner_id = 4;
+/* List of all animals that are pokemon (their type is Pokemon). */
+SELECT DISTINCT animals.name FROM vet_clinic.animals INNER JOIN vet_clinic.species ON species_id = 1;
+/* List all owners and their animals, remember to include those that don't own any animal. */
+SELECT owners.full_name, vet_clinic.animals.name FROM vet_clinic.owners LEFT JOIN vet_clinic.animals ON owners.id = animals.owner_id;
+/* How many animals are there per species? */
+/* Pokemon */
+SELECT count(DISTINCT animals.name) FROM vet_clinic.animals INNER JOIN vet_clinic.species ON species_id = 1;
+/* Digimon */
+SELECT count(DISTINCT animals.name) FROM vet_clinic.animals INNER JOIN vet_clinic.species ON species_id = 2;
+/* List all Digimon owned by Jennifer Orwell. */
+SELECT DISTINCT name FROM vet_clinic.animals INNER JOIN vet_clinic.owners ON owner_id = 2 WHERE animals.species_id = 2;
+/* List all animals owned by Dean Winchester that haven't tried to escape. */
+SELECT DISTINCT name FROM vet_clinic.animals INNER JOIN vet_clinic.owners ON owner_id = 5 WHERE animals.escape_attempts = 0;
+/* Who owns the most animals? */
+SELECT full_name, Count(owners.full_name) as Total_Animals FROM vet_clinic.owners LEFT JOIN vet_clinic.animals ON owners.id = animals.owner_id GROUP BY owners.full_name ORDER BY Total_Animals DESC LIMIT 1;
