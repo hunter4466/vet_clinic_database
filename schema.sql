@@ -6,6 +6,6 @@ CREATE TABLE `vet_clinic`.`animals` (
   `date_of_birth` DATE NULL,
   `escape_attempts` INT NULL,
   `neutered` BOOLEAN NULL,
-  `weight_kg` DECIMAL(2) NULL,
+  `weight_kg` DECIMAL(6,2) NULL,
   `species` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));

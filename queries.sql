@@ -8,3 +8,8 @@ SELECT name, escape_attempts FROM vet_clinic.animals WHERE weight_kg > "10.50";
 SELECT * FROM vet_clinic.animals WHERE neutered = true;
 SELECT * FROM vet_clinic.animals WHERE name != "Gabumon";
 SELECT * FROM vet_clinic.animals WHERE weight_kg >= "10.40" AND weight_kg <= "17.30";
+
+BEGIN;
+UPDATE vet_clinic.animals SET species = 'unspecified' WHERE id > 0;
+ROLLBACK;
+
