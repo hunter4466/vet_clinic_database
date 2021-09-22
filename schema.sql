@@ -54,8 +54,7 @@ CREATE TABLE `vet_clinic`.`vets` (
 
 CREATE TABLE `vet_clinic`.`specializations` (
   `vet_id` INT NULL,
-  `species_id` INT NULL,
-  );
+  `species_id` INT NULL);
 
 ALTER TABLE `vet_clinic`.`specializations` ADD FOREIGN KEY (vet_id) REFERENCES vets(id);
 ALTER TABLE `vet_clinic`.`specializations` ADD FOREIGN KEY (species_id) REFERENCES species(id);
@@ -64,7 +63,7 @@ ALTER TABLE `vet_clinic`.`specializations` ADD FOREIGN KEY (species_id) REFERENC
 CREATE TABLE `vet_clinic`.`visits` (
   `animals_id` INT NULL,
   `vet_id` INT NULL,
-  );
-  
+  `visit_date` DATE NULL);
+
 ALTER TABLE `vet_clinic`.`visits` ADD FOREIGN KEY (animals_id) REFERENCES animals(id);
 ALTER TABLE `vet_clinic`.`visits` ADD FOREIGN KEY (vet_id) REFERENCES vets(id);
