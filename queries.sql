@@ -201,24 +201,25 @@ JOIN vet_clinic.vets ON (vet_clinic.visits.vet_id = vet_clinic.vets.id)
 ORDER BY vets_visit_date DESC LIMIT 1;
 
 /* How many visits were with a vet that did not specialize in that animal's species? */
-SELECT vet_clinic.animals.name,
-vet_clinic.animals.date_of_birth AS animals_birth_date,
-vet_clinic.animals.escape_attempts,
-vet_clinic.animals.neutered,
-vet_clinic.animals.weight_kg AS animals_weight,
-vet_clinic.species.name AS specie_name,
-vet_clinic.owners.full_name AS owners_full_name,
-vet_clinic.owners.age AS owners_age,
-vet_clinic.visits.visit_date AS vets_visit_date,
-vet_clinic.vets.name AS vets_name,
-vet_clinic.vets.age AS vets_age,
-vet_clinic.vets.date_of_graduation AS vets_graduation_date,
-vet_clinic.specializations.species_id
-FROM vet_clinic.animals
-JOIN vet_clinic.species ON (vet_clinic.animals.species_id = vet_clinic.species.id)
-JOIN vet_clinic.owners ON (vet_clinic.animals.owner_id = vet_clinic.owners.id)
-JOIN vet_clinic.visits ON (vet_clinic.animals.id = vet_clinic.visits.animals_id)
-JOIN vet_clinic.vets ON (vet_clinic.visits.vet_id = vet_clinic.vets.id)
-LEFT JOIN vet_clinic.specializations ON (vet_clinic.vets.id = vet_clinic.specializations.vet_id)
+SELECT count(*) FROM vet_clinic.visits, vet_clinic.animals
+WHERE NOT EXISTS
+(SELECT * 
+FROM vet_clinic.specializations 
+WHERE vet_clinic.specializations.species_id = vet_clinic.animals.species_id
+AND vet_clinic.specializations.vet_id = vet_clinic.visits.vet_id)
+AND vet_clinic.animals.id = vet_clinic.visits.animals_id;
 
 /* What specialty should Maisy Smith consider getting? Look for the species she gets the most. */
+
+SELECT vet_clinic.species.name AS suggested_specialization
+FROM vet_clinic.animals
+JOIN vet_clinic.visits
+ON (vet_clinic.animals.id = vet_clinic.visits.animals_id)
+JOIN vet_clinic.vets
+ON (vet_clinic.vets.id = vet_clinic.visits.vet_id)
+JOIN vet_clinic.species
+ON (vet_clinic.animals.species_id = vet_clinic.species.id)
+WHERE vet_clinic.vets.id = 2
+GROUP BY vet_clinic.species.name
+ORDER BY count(vet_clinic.species.name) DESC
+LIMIT 1
