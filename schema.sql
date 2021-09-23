@@ -44,3 +44,26 @@ ALTER TABLE `vet_clinic`.`animals` ADD FOREIGN KEY (species_id) REFERENCES speci
 /* Add column owner_id which is a foreign key referencing the owners table */
 ALTER TABLE `vet_clinic`.`animals` ADD `owner_id` INT NULL;
 ALTER TABLE `vet_clinic`.`animals` ADD FOREIGN KEY (owner_id) REFERENCES owners(id);
+
+CREATE TABLE `vet_clinic`.`vets` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `age` INT NULL,
+  `date_of_graduation` DATE NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `vet_clinic`.`specializations` (
+  `vet_id` INT NULL,
+  `species_id` INT NULL);
+
+ALTER TABLE `vet_clinic`.`specializations` ADD FOREIGN KEY (vet_id) REFERENCES vets(id);
+ALTER TABLE `vet_clinic`.`specializations` ADD FOREIGN KEY (species_id) REFERENCES species(id);
+
+
+CREATE TABLE `vet_clinic`.`visits` (
+  `animals_id` INT NULL,
+  `vet_id` INT NULL,
+  `visit_date` DATE NULL);
+
+ALTER TABLE `vet_clinic`.`visits` ADD FOREIGN KEY (animals_id) REFERENCES animals(id);
+ALTER TABLE `vet_clinic`.`visits` ADD FOREIGN KEY (vet_id) REFERENCES vets(id);
